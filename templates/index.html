@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{%block title%}
+Home
+{%endblock%}
+{%block body%}
+<h1>One Stop Shop</h1>
+<button class="btn btn-danger">Home</button>
+<button class="btn btn-danger">User register</button>
+<a href="/login" class="btn btn-danger">Login as owner</a>
+<a href="/cart" class="btn btn-danger">View cart</a>
+<div>
+    <h2>Stores</h2>
+    <div class="row">
+        {% if allshops %}
+        {% for shop in allshops %}
+        <div class="card col-4">
+            <div class="card-body">
+                <h5 class="card-title">{{ shop['shopname'] }}</h5>
+                <a href="/shop?shopid={{ shop['_id'] }}" class="btn btn-primary">Visit shop</a>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p>No Shops available</p>
+        {% endif %}
+    </div>
+</div>
+<div>
+    <h2>All products</h2>
+    <div class="row">
+        {% if products %}
+        {% for product in products %}
+        <div class="card col-4">
+            <div class="card-body">
+                <img src="{{ product['image_url'] }}" alt="" class="card-img-top" width="200" height="200">
+                <h5 class="card-title">{{ product['name'] }}</h5>
+                <p class="card-text">{{ product['shop'] }}</p>
+                <a href="/addtocart?id={{ product['_id'] }}&from=index" class="btn">Add to cart</a>
+                <!-- <a href="/shop?shopid={{ product['_id'] }}" class="btn btn-primary">Visit shop</a> -->
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p>No Products available</p>
+        {% endif %}
+    </div>
+</div>
+<div id="logindiv">
+    <h2>Register</h2>
+    <form action="" method="post">
+        <input type="text" name="shopname" placeholder="Name of shop" class="form-control">
+        <input type="text" name="ownername" placeholder="Name of owner" class="form-control">
+        <input type="text" name="email" placeholder="Email" class="form-control">
+        <input type="password" name="password" placeholder="Password" class="form-control">
+        <input type="submit" class="btn btn-primary">
+    </form>
+</div>
+{%endblock%}

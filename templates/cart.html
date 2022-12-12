@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{%block title%}
+cart
+{%endblock%}
+{%block body%}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Item</th>
+            <th scope="col">Unit Price</th>
+            <th scope="col">Total price</th>
+            <th scope="col">Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if allitems %}
+        {% for item in allitems %}
+        <tr>
+            <td>{{ item['name'] }}</td>
+            <td>${{ item['price'] }}</td>
+            <td>${{ item['allprice'] }}</td>
+            <td>{{ item['quantity'] }}</td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+    </tbody>
+</table>
+<p>Grand total: ${{ grandtotal }}</p>
+<a href="/" class="btn btn-primary">Back</a>
+{%endblock%}
