@@ -2,4 +2,3 @@ flask
 flask-moment
 pymongo
 passlib
-gunicorn
