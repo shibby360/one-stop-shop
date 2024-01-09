@@ -3,12 +3,7 @@ import pymongo
 from passlib.hash import pbkdf2_sha256
 from bson.objectid import ObjectId
 import os
-if os.environ.get('COMPUTER_NAME') != 'heroku':
-    f = open('connectionstring.txt')
-    connectionstring = f.read().strip()
-    f.close()
-else:
-    connectionstring = os.environ.get('MONGO_URI')
+connectionstring = os.environ.get('MONGO_URI')
 cluster = pymongo.MongoClient(connectionstring)
 database = cluster['onestopshop']
 accounts = database['accounts']
