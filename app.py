@@ -137,6 +137,3 @@ def cart():
         grandtotal += prod['allprice']
         allitems.append(prod)
     return render_template('cart.html', allitems=allitems, grandtotal=grandtotal)
-
-if __name__ == '__main__':
-    app.run()
